@@ -1,0 +1,2 @@
+turtlebot_auto_architect:turtlebot_construction_rl
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/catkin_ws/install -G Unix Makefiles

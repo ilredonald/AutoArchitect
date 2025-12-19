@@ -1,0 +1,51 @@
+doors:
+- orientation: horizontal
+  x: 5.55
+  y: 7.2
+- orientation: horizontal
+  x: 14.0
+  y: 1.5
+rooms:
+- height: 7.5
+  surface: 19.76626205444336
+  type: salon
+  width: 12.0
+  x: 0
+  y: 7.5
+- height: 7.5
+  surface: 19.060977935791016
+  type: cuisine
+  width: 8.0
+  x: 12.0
+  y: 7.5
+- height: 6.0
+  name: Chambre 1
+  surface: 60.0
+  type: chambre
+  width: 10.0
+  x: 0.0
+  y: 1.5
+- height: 6.0
+  name: Chambre 2
+  surface: 60.0
+  type: chambre
+  width: 10.0
+  x: 10.0
+  y: 1.5
+- height: 1.5
+  name: Salle de bain 1
+  surface: 30.0
+  type: salle_de_bain
+  width: 20.0
+  x: 0.0
+  y: 0
+total_height: 15
+total_width: 20
+wall_thickness: 0.3
+windows:
+- orientation: horizontal
+  x: 5.4
+  y: 14.95
+- orientation: vertical
+  x: 19.95
+  y: 9.0
