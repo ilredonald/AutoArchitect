@@ -1,0 +1,33 @@
+- compiler le fichier python pour générer le plan : `python AI_generator_plan_de_construction.py`
+
+à la fin de la compilation de ce fichier, vous devez avoir deux représentations du plan de construction. Une visuelle "plan_maison.png", et une autre en coordonnée "plan_maison.yaml".
+
+pour avoir un plan différent, vous devez modifier le prompt à la ligne  `278 prompt = "Maison moderne avec 3 chambres, 2 salles de bain, un pétit salon et une cuisine ouverte."`
+
+- Après avoir obtenu les plans de constructions (les deux représentations), déplacer les dans le dossier, catkin_ws/src/turtlebot_auto_architect/plan
+
+- Après avoir mis en place un environnement de travail approprié pour un projet ros, compiler le package turtlebot_auto_architect : `catkin_make`
+
+- rassurer vous en premier lieu d'avoir importer le robot dans votre environnement de travail : `source ~/catkin_ws/devel/setup.bash
+export TURTLEBOT3_MODEL=burger`
+
+- lancer gazebo pour avec le turtlebot dans un environnement vierge pour activer les capteurs du robot. `roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch`
+
+- lancer rviz
+
+Sans rienforcement learning : 
+
+- compiler le fichier suivant "house_tracer_node.py" : `python catkin_ws/src/turtlebot_auto_architect/scripts/house_tracer_node.py`  ce fichier poussera le robot à lire le plan de construction pour pouvoir le reproduire.
+
+- dans rviz, pour visualiser le travail réaliser par le robot, regler les paramètres suivant :
+1.	Add → Path
+2.	Topic : /trace_path
+3.	Fixed Frame : odom
+4.	Line width : 0.05
+
+Avec rienforcement learning : 
+
+
+
+
+
