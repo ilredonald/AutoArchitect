@@ -19,7 +19,7 @@ Sans rienforcement learning :
 
 - compiler le fichier suivant "house_tracer_node.py" : `python catkin_ws/src/turtlebot_auto_architect/scripts/house_tracer_node.py`  ce fichier poussera le robot à lire le plan de construction pour pouvoir le reproduire.
 
-- dans rviz, pour visualiser le travail réaliser par le robot, regler les paramètres suivant :
+- dans rviz, pour visualiser le travail réaliser par le robot, régler les paramètres suivant :
 1.	Add → Path
 2.	Topic : /trace_path
 3.	Fixed Frame : odom
@@ -27,6 +27,9 @@ Sans rienforcement learning :
 
 Avec rienforcement learning : 
 
+- compiler le fichier suivant "train_ppo.py" : `python catkin_ws/src/turtlebot_auto_architect/rl/train_ppo.py` ce qui pousse le robot à s'entrainer à bien construire des lignes droites grâce à l'apprentissage par renforcement. les recompenses et  pénalités sont gérés par le fichier : "wall_follow_env.py". 
+
+- A la fin de l'entrainement, lancer le fichier "house_tracer_node1.py" : `python catkin_ws/src/turtlebot_auto_architect/scripts/house_tracer_node1.py` ce qui pousse le robot à utiliser le modèle entrainé plus haut pour reproduire le plan de construction.
 
 
 
