@@ -1,36 +1,93 @@
-- compiler le fichier python pour générer le plan : `python AI_generator_plan_de_construction.py`
+Procédure d’exécution du projet
 
-à la fin de la compilation de ce fichier, vous devez avoir deux représentations du plan de construction. Une visuelle "plan_maison.png", et une autre en coordonnée "plan_maison.yaml".
+Cette section décrit les différentes étapes nécessaires pour générer un plan de construction, configurer l’environnement ROS et lancer la reproduction du plan par le TurtleBot, avec ou sans apprentissage par renforcement.
 
-pour avoir un plan différent, vous devez modifier le prompt à la ligne  `278 prompt = "Maison moderne avec 3 chambres, 2 salles de bain, un pétit salon et une cuisine ouverte."`
+🧠 Génération du plan de construction
 
-- Après avoir obtenu les plans de constructions (les deux représentations), déplacer les dans le dossier, catkin_ws/src/turtlebot_auto_architect/plan
+Exécuter le script Python de génération du plan :
 
-- Après avoir mis en place un environnement de travail approprié pour un projet ros, compiler le package turtlebot_auto_architect : `catkin_make`
-
-- rassurer vous en premier lieu d'avoir importer le robot dans votre environnement de travail : `source ~/catkin_ws/devel/setup.bash
-export TURTLEBOT3_MODEL=burger`
-
-- lancer gazebo pour avec le turtlebot dans un environnement vierge pour activer les capteurs du robot. `roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch`
-
-- lancer rviz
-
-Sans rienforcement learning : 
-
-- compiler le fichier suivant "house_tracer_node.py" : `python catkin_ws/src/turtlebot_auto_architect/scripts/house_tracer_node.py`  ce fichier poussera le robot à lire le plan de construction pour pouvoir le reproduire.
-
-- dans rviz, pour visualiser le travail réaliser par le robot, régler les paramètres suivant :
-1.	Add → Path
-2.	Topic : /trace_path
-3.	Fixed Frame : odom
-4.	Line width : 0.05
-
-Avec rienforcement learning : 
-
-- compiler le fichier suivant "train_ppo.py" : `python catkin_ws/src/turtlebot_auto_architect/rl/train_ppo.py` ce qui pousse le robot à s'entrainer à bien construire des lignes droites grâce à l'apprentissage par renforcement. les recompenses et  pénalités sont gérés par le fichier : "wall_follow_env.py". 
-
-- A la fin de l'entrainement, lancer le fichier "house_tracer_node1.py" : `python catkin_ws/src/turtlebot_auto_architect/scripts/house_tracer_node1.py` ce qui pousse le robot à utiliser le modèle entrainé plus haut pour reproduire le plan de construction.
+python AI_generator_plan_de_construction.py
 
 
+À la fin de l’exécution, deux représentations du plan de construction sont générées :
+
+🖼️ Une représentation visuelle : plan_maison.png
+
+📐 Une représentation sous forme de coordonnées : plan_maison.yaml
+
+Pour générer un plan différent, modifier le prompt situé à la ligne 278 du fichier :
+
+prompt = "Maison moderne avec 3 chambres, 2 salles de bain, un petit salon et une cuisine ouverte."
+
+📁 Placement des fichiers du plan
+
+Une fois les plans générés, déplacer les deux fichiers dans le répertoire suivant :
+
+catkin_ws/src/turtlebot_auto_architect/plan
+
+🛠️ Compilation du package ROS
+
+Assurez-vous de disposer d’un environnement de travail ROS correctement configuré.
+
+Compilez le package turtlebot_auto_architect :
+
+catkin_make
+
+🐢 Initialisation du robot
+
+Avant de lancer la simulation, importez le robot dans l’environnement ROS :
+
+source ~/catkin_ws/devel/setup.bash
+export TURTLEBOT3_MODEL=burger
+
+🌍 Lancement de la simulation
+
+Lancez Gazebo avec un environnement vierge afin d’activer les capteurs du TurtleBot :
+
+roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch
 
 
+Lancez RViz dans un terminal séparé :
+
+rviz
+
+🚶 Reproduction du plan sans apprentissage par renforcement
+
+Exécutez le script suivant :
+
+python catkin_ws/src/turtlebot_auto_architect/scripts/house_tracer_node.py
+
+
+Ce nœud permet au robot de lire le plan de construction et de le reproduire en traçant symboliquement les murs.
+
+Configuration de RViz pour visualiser la trajectoire du robot :
+
+Add → Path
+
+Topic : /trace_path
+
+Fixed Frame : odom
+
+Line Width : 0.05
+
+🤖 Reproduction du plan avec apprentissage par renforcement
+🔁 Entraînement du robot
+
+Lancez l’entraînement du robot à l’aide de l’algorithme PPO :
+
+python catkin_ws/src/turtlebot_auto_architect/rl/train_ppo.py
+
+
+Cet entraînement permet au robot d’apprendre à tracer des lignes droites avec précision grâce à l’apprentissage par renforcement.
+Les mécanismes de récompenses et de pénalités sont définis dans le fichier :
+
+wall_follow_env.py
+
+🧠 Exploitation du modèle entraîné
+
+Une fois l’entraînement terminé, exécutez le script suivant :
+
+python catkin_ws/src/turtlebot_auto_architect/scripts/house_tracer_node1.py
+
+
+Ce nœud permet au robot d’utiliser le modèle entraîné pour reproduire le plan de construction de manière plus précise et robuste.
